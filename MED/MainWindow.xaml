@@ -1,0 +1,33 @@
+﻿<Window x:Class="MED.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MED"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="25" Margin="0,5,0,0">
+            <Button Content="Добавить" Width="100" Click="AddEmployee_Click"/>
+            <Button Content="Редактировать" Width="100" Margin="10,0,0,0" Click="EditEmployee_Click"/>
+            <Button Content="Удалить" Width="100" Margin="10,0,0,0" Click="DeleteEmployee_Click"/>
+            <Label Content="Поиск по подразделению:" VerticalAlignment="Center"/>
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5,0,10,0"/>
+            <Button Content="Поиск" Click="SearchButton_Click"/>
+
+        </StackPanel>
+        
+        <DataGrid x:Name="SchedulesGrid" AutoGenerateColumns="False" Grid.Row="1" Margin="0,37,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding schedule_id}"/>
+                <DataGridTextColumn Header="Номер" Binding="{Binding schedule_number}"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding obsled_date, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Подразделение" Binding="{Binding department_id}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,32 @@
+﻿<Window x:Class="MED.scheduleForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MED"
+        mc:Ignorable="d"
+        Title="scheduleForm" Height="252" Width="468">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="id"/>
+            <TextBox x:Name="LastNameBox"/>
+            <Label Content="Номер"/>
+            <TextBox x:Name="FirstNameBox"/>
+            <Label Content="Дата рождения"/>
+            <DatePicker x:Name="ObsledDatePicker"/>
+            <Label Content="Подразделение"/>
+            <TextBox x:Name="DepartmentIdBox"/>
+            
+        </StackPanel>
+
+        <Button Content="Сохранить" Grid.Row="4" Margin="0,10,0,0" Click="Save_Click"/>
+    </Grid>
+</Window>

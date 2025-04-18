@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c5e408f588f44f3b14418b537dfeb8e" Name="Diagram1" ZoomLevel="59">
+        <EntityTypeShape EntityType="MEDModel.departments" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.employee_history" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.employees" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.organization" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.positions" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.schedules" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MEDModel.users" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="MEDModel.FK__departmen__emplo__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDModel.FK__employee___depar__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDModel.FK__schedules__depar__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDModel.FK__employee___emplo__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDModel.FK__employee___posit__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="MEDModel.FK__positions__emplo__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
