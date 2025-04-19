@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TestBaseProbaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="FIOClient" Type="nvarchar" MaxLength="150" />
+          <Property Name="DataPassport" Type="int" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="int" Nullable="false" />
+          <Property Name="ReqName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReqNumber" Type="int" />
+          <Property Name="TechID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="WorkerID" Type="int" />
+          <Property Name="DateStart" Type="date" />
+          <Property Name="DateStop" Type="date" />
+        </EntityType>
+        <EntityType Name="Tech">
+          <Key>
+            <PropertyRef Name="TechID" />
+          </Key>
+          <Property Name="TechID" Type="int" Nullable="false" />
+          <Property Name="TechName" Type="nvarchar" MaxLength="100" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="InventNumber" Type="int" />
+          <Property Name="PriceTech" Type="int" />
+          <Property Name="DateBuyTech" Type="date" />
+        </EntityType>
+        <EntityType Name="TypeTech">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="USerLog" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserPass" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="int" Nullable="false" />
+          <Property Name="WorkerFIO" Type="nvarchar" MaxLength="150" />
+          <Property Name="Dolgnist" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK__Requests__Client__4316F928">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__TechID__4222D4EF">
+          <End Role="Tech" Type="Self.Tech" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tech">
+              <PropertyRef Name="TechID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Worker__440B1D61">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tech__TechID__3B75D760">
+          <End Role="TypeTech" Type="Self.TypeTech" Multiplicity="1" />
+          <End Role="Tech" Type="Self.Tech" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TypeTech">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Tech">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TestBaseProbaModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tech" EntityType="Self.Tech" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeTech" EntityType="Self.TypeTech" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Requests__Client__4316F928" Association="Self.FK__Requests__Client__4316F928">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__TechID__4222D4EF" Association="Self.FK__Requests__TechID__4222D4EF">
+            <End Role="Tech" EntitySet="Tech" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Worker__440B1D61" Association="Self.FK__Requests__Worker__440B1D61">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tech__TechID__3B75D760" Association="Self.FK__Tech__TechID__3B75D760">
+            <End Role="TypeTech" EntitySet="TypeTech" />
+            <End Role="Tech" EntitySet="Tech" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestBaseProbaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="FIOClient" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DataPassport" Type="Int32" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Client__4316F928" FromRole="Clients" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="ReqID" />
+          </Key>
+          <Property Name="ReqID" Type="Int32" Nullable="false" />
+          <Property Name="ReqName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReqNumber" Type="Int32" />
+          <Property Name="TechID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="WorkerID" Type="Int32" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
+          <Property Name="DateStop" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Requests__Client__4316F928" FromRole="Requests" ToRole="Clients" />
+          <NavigationProperty Name="Tech" Relationship="Self.FK__Requests__TechID__4222D4EF" FromRole="Requests" ToRole="Tech" />
+          <NavigationProperty Name="Workers" Relationship="Self.FK__Requests__Worker__440B1D61" FromRole="Requests" ToRole="Workers" />
+        </EntityType>
+        <EntityType Name="Tech">
+          <Key>
+            <PropertyRef Name="TechID" />
+          </Key>
+          <Property Name="TechID" Type="Int32" Nullable="false" />
+          <Property Name="TechName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="InventNumber" Type="Int32" />
+          <Property Name="PriceTech" Type="Int32" />
+          <Property Name="DateBuyTech" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__TechID__4222D4EF" FromRole="Tech" ToRole="Requests" />
+          <NavigationProperty Name="TypeTech" Relationship="Self.FK__Tech__TechID__3B75D760" FromRole="Tech" ToRole="TypeTech" />
+        </EntityType>
+        <EntityType Name="TypeTech">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tech" Relationship="Self.FK__Tech__TechID__3B75D760" FromRole="TypeTech" ToRole="Tech" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="USerLog" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserPass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Workers">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="Int32" Nullable="false" />
+          <Property Name="WorkerFIO" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Dolgnist" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Requests__Worker__440B1D61" FromRole="Workers" ToRole="Requests" />
+        </EntityType>
+        <Association Name="FK__Requests__Client__4316F928">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__TechID__4222D4EF">
+          <End Role="Tech" Type="Self.Tech" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tech">
+              <PropertyRef Name="TechID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Requests__Worker__440B1D61">
+          <End Role="Workers" Type="Self.Workers" Multiplicity="0..1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workers">
+              <PropertyRef Name="WorkerID" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tech__TechID__3B75D760">
+          <End Role="TypeTech" Type="Self.TypeTech" Multiplicity="1" />
+          <End Role="Tech" Type="Self.Tech" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TypeTech">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Tech">
+              <PropertyRef Name="TechID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestBaseProbaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" />
+          <EntitySet Name="Tech" EntityType="Self.Tech" />
+          <EntitySet Name="TypeTech" EntityType="Self.TypeTech" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Workers" EntityType="Self.Workers" />
+          <AssociationSet Name="FK__Requests__Client__4316F928" Association="Self.FK__Requests__Client__4316F928">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__TechID__4222D4EF" Association="Self.FK__Requests__TechID__4222D4EF">
+            <End Role="Tech" EntitySet="Tech" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Requests__Worker__440B1D61" Association="Self.FK__Requests__Worker__440B1D61">
+            <End Role="Workers" EntitySet="Workers" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tech__TechID__3B75D760" Association="Self.FK__Tech__TechID__3B75D760">
+            <End Role="TypeTech" EntitySet="TypeTech" />
+            <End Role="Tech" EntitySet="Tech" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TestBaseProbaModelContainer" CdmEntityContainer="TestBaseProbaEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="FIOClient" ColumnName="FIOClient" />
+                <ScalarProperty Name="DataPassport" ColumnName="DataPassport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="ReqID" ColumnName="ReqID" />
+                <ScalarProperty Name="ReqName" ColumnName="ReqName" />
+                <ScalarProperty Name="ReqNumber" ColumnName="ReqNumber" />
+                <ScalarProperty Name="TechID" ColumnName="TechID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateStop" ColumnName="DateStop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tech">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.Tech">
+              <MappingFragment StoreEntitySet="Tech">
+                <ScalarProperty Name="TechID" ColumnName="TechID" />
+                <ScalarProperty Name="TechName" ColumnName="TechName" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="InventNumber" ColumnName="InventNumber" />
+                <ScalarProperty Name="PriceTech" ColumnName="PriceTech" />
+                <ScalarProperty Name="DateBuyTech" ColumnName="DateBuyTech" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeTech">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.TypeTech">
+              <MappingFragment StoreEntitySet="TypeTech">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="USerLog" ColumnName="USerLog" />
+                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers">
+            <EntityTypeMapping TypeName="TestBaseProbaModel.Workers">
+              <MappingFragment StoreEntitySet="Workers">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="WorkerFIO" ColumnName="WorkerFIO" />
+                <ScalarProperty Name="Dolgnist" ColumnName="Dolgnist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

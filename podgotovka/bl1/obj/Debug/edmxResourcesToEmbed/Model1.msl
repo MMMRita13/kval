@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TestBaseProbaModelContainer" CdmEntityContainer="TestBaseProbaEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="FIOClient" ColumnName="FIOClient" />
+          <ScalarProperty Name="DataPassport" ColumnName="DataPassport" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.Requests">
+        <MappingFragment StoreEntitySet="Requests">
+          <ScalarProperty Name="ReqID" ColumnName="ReqID" />
+          <ScalarProperty Name="ReqName" ColumnName="ReqName" />
+          <ScalarProperty Name="ReqNumber" ColumnName="ReqNumber" />
+          <ScalarProperty Name="TechID" ColumnName="TechID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateStop" ColumnName="DateStop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tech">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.Tech">
+        <MappingFragment StoreEntitySet="Tech">
+          <ScalarProperty Name="TechID" ColumnName="TechID" />
+          <ScalarProperty Name="TechName" ColumnName="TechName" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="InventNumber" ColumnName="InventNumber" />
+          <ScalarProperty Name="PriceTech" ColumnName="PriceTech" />
+          <ScalarProperty Name="DateBuyTech" ColumnName="DateBuyTech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeTech">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.TypeTech">
+        <MappingFragment StoreEntitySet="TypeTech">
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="USerLog" ColumnName="USerLog" />
+          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workers">
+      <EntityTypeMapping TypeName="TestBaseProbaModel.Workers">
+        <MappingFragment StoreEntitySet="Workers">
+          <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+          <ScalarProperty Name="WorkerFIO" ColumnName="WorkerFIO" />
+          <ScalarProperty Name="Dolgnist" ColumnName="Dolgnist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

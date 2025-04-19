@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9aea9358fa80440b8dd693f0664402f4" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="TestBaseProbaModel.Clients" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBaseProbaModel.Requests" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBaseProbaModel.Tech" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBaseProbaModel.TypeTech" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBaseProbaModel.Users" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestBaseProbaModel.Workers" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="TestBaseProbaModel.FK__Requests__Client__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBaseProbaModel.FK__Requests__TechID__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBaseProbaModel.FK__Requests__Worker__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="TestBaseProbaModel.FK__Tech__TechID__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
