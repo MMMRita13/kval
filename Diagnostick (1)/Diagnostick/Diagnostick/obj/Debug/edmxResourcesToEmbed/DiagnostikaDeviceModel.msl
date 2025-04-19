@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DiagnostikaDeviceModelContainer" CdmEntityContainer="DiagnostikaDeviceEntities">
+    <EntitySetMapping Name="Diagnostics">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.Diagnostics">
+        <MappingFragment StoreEntitySet="Diagnostics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="MeasureDateTime" ColumnName="MeasureDateTime" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Unit" ColumnName="Unit" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="EmployeeFullName" ColumnName="EmployeeFullName" />
+          <ScalarProperty Name="EmployeePosition" ColumnName="EmployeePosition" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="ExternalOrganizationName" ColumnName="ExternalOrganizationName" />
+          <ScalarProperty Name="ExternalOrganizationAddress" ColumnName="ExternalOrganizationAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Enterprises">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.Enterprises">
+        <MappingFragment StoreEntitySet="Enterprises">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="LegalAddress" ColumnName="LegalAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EquipmentAssignments">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.EquipmentAssignments">
+        <MappingFragment StoreEntitySet="EquipmentAssignments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sites">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.Sites">
+        <MappingFragment StoreEntitySet="Sites">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EnterpriseId" ColumnName="EnterpriseId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DiagnostikaDeviceModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

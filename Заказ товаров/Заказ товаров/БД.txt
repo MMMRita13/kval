@@ -1,0 +1,59 @@
+CREATE DATABASE OrderSystem;
+GO
+USE OrderSystem;
+GO
+
+CREATE TABLE ProductGroup (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100),
+    ShortName NVARCHAR(50)
+);
+
+CREATE TABLE Product (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100),
+    ShortName NVARCHAR(50),
+    GroupId INT FOREIGN KEY REFERENCES ProductGroup(Id)
+);
+
+CREATE TABLE Client (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100),
+    ContactPerson NVARCHAR(100),
+    Phone NVARCHAR(20),
+    Address NVARCHAR(200)
+);
+
+CREATE TABLE [Order] (
+    Id INT PRIMARY KEY IDENTITY,
+    OrderDate DATE NOT NULL,
+    ClientId INT FOREIGN KEY REFERENCES Client(Id)
+);
+
+CREATE TABLE OrderItem (
+    Id INT PRIMARY KEY IDENTITY,
+    OrderId INT FOREIGN KEY REFERENCES [Order](Id),
+    ProductId INT FOREIGN KEY REFERENCES Product(Id),
+    Quantity INT,
+    UnitPrice DECIMAL(10,2)
+); 
+
+INSERT INTO ProductGroup (Name, ShortName)
+VALUES 
+('Кондитерские изделия', 'Кондитерка'),
+('Бытовая химия', 'Химия'),
+('Макаронные изделия', 'Макароны');
+
+INSERT INTO Product (Name, ShortName, GroupId)
+VALUES 
+('Шоколад "Аленка"', 'Шоколад', 1),
+('Мыло "Dove"', 'Мыло', 2),
+('Макароны "Barilla"', 'Barilla', 3),
+('Конфеты "Мишка на Севере"', 'Конфеты', 1),
+('Стиральный порошок "Tide"', 'Tide', 2);
+
+INSERT INTO Client (Name, ContactPerson, Phone, Address)
+VALUES 
+('ООО "Сладкий Мир"', 'Иванов И.И.', '88005553535', 'г. Москва, ул. Пирожная, д.1'),
+('ИП "Чистюля"', 'Петрова А.А.', '89001234567', 'г. Казань, ул. Чистая, д.7'),
+('ООО "ПастаРико"', 'Сидоров С.С.', '89997776655', 'г. Самара, ул. Макаронная, д.3');

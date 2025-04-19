@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище DiagnostikaDeviceModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Diagnostics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+    <Property Name="MeasureDateTime" Type="date" Nullable="false" />
+    <Property Name="ParameterName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Value" Type="float" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="MinValue" Type="float" />
+    <Property Name="MaxValue" Type="float" />
+    <Property Name="EmployeeFullName" Type="nvarchar" MaxLength="200" />
+    <Property Name="EmployeePosition" Type="nvarchar" MaxLength="100" />
+    <Property Name="Department" Type="nvarchar" MaxLength="100" />
+    <Property Name="ExternalOrganizationName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ExternalOrganizationAddress" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Enterprises">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LegalAddress" Type="nvarchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="SiteId" Type="int" />
+  </EntityType>
+  <EntityType Name="EquipmentAssignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
+    <Property Name="SiteId" Type="int" Nullable="false" />
+    <Property Name="OrderNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrderDate" Type="date" Nullable="false" />
+    <Property Name="AssignmentDate" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sites">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnterpriseId" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__Diagnosti__Equip__5070F446">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="Diagnostics" Type="Self.Diagnostics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diagnostics">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__3F466844">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentAssignments" Type="Self.EquipmentAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentAssignments">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__SiteI__3C69FB99">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="SiteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__SiteI__403A8C7D">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+    <End Role="EquipmentAssignments" Type="Self.EquipmentAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentAssignments">
+        <PropertyRef Name="SiteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sites__Enterpris__398D8EEE">
+    <End Role="Enterprises" Type="Self.Enterprises" Multiplicity="1" />
+    <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enterprises">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sites">
+        <PropertyRef Name="EnterpriseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище DiagnostikaDeviceModelContainer">
+    <EntitySet Name="Diagnostics" EntityType="Self.Diagnostics" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enterprises" EntityType="Self.Enterprises" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EquipmentAssignments" EntityType="Self.EquipmentAssignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Diagnosti__Equip__5070F446" Association="Self.FK__Diagnosti__Equip__5070F446">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="Diagnostics" EntitySet="Diagnostics" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__3F466844" Association="Self.FK__Equipment__Equip__3F466844">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="EquipmentAssignments" EntitySet="EquipmentAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__SiteI__3C69FB99" Association="Self.FK__Equipment__SiteI__3C69FB99">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="Equipment" EntitySet="Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__SiteI__403A8C7D" Association="Self.FK__Equipment__SiteI__403A8C7D">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="EquipmentAssignments" EntitySet="EquipmentAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sites__Enterpris__398D8EEE" Association="Self.FK__Sites__Enterpris__398D8EEE">
+      <End Role="Enterprises" EntitySet="Enterprises" />
+      <End Role="Sites" EntitySet="Sites" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

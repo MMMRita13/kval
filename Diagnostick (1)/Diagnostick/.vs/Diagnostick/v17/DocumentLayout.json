@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|c:\\users\\romka\\desktop\\emae\\diagnostick\\diagnostick\\manageequipmentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|solutionrelative:diagnostick\\manageequipmentwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|c:\\users\\romka\\desktop\\emae\\diagnostick\\diagnostick\\manageequipmentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|solutionrelative:diagnostick\\manageequipmentwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|c:\\users\\romka\\desktop\\emae\\diagnostick\\diagnostick\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AF003C1A-E561-4C86-A7C9-C18F6EF0EDB8}|Diagnostick\\Diagnostick.csproj|solutionrelative:diagnostick\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5da8d69b-058a-4294-a87a-f4f7ae2983b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManageEquipmentWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\ManageEquipmentWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Diagnostick\\ManageEquipmentWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\ManageEquipmentWindow.xaml.cs",
+              "RelativeToolTip": "Diagnostick\\ManageEquipmentWindow.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T17:02:34.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManageEquipmentWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\ManageEquipmentWindow.xaml",
+              "RelativeDocumentMoniker": "Diagnostick\\ManageEquipmentWindow.xaml",
+              "ToolTip": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\ManageEquipmentWindow.xaml",
+              "RelativeToolTip": "Diagnostick\\ManageEquipmentWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-18T17:02:08.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Diagnostick\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\romka\\Desktop\\emae\\Diagnostick\\Diagnostick\\MainWindow.xaml",
+              "RelativeToolTip": "Diagnostick\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-18T15:20:37.826Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

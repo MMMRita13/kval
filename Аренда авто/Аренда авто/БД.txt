@@ -1,0 +1,73 @@
+CREATE TABLE VehicleType (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    ShortName NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Firm (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    ShortName NVARCHAR(50),
+    Address NVARCHAR(200)
+);
+
+CREATE TABLE Vehicle (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    NumberPlate NVARCHAR(20) NOT NULL,
+    Model NVARCHAR(50) NOT NULL,
+    ReleaseDate DATE,
+    TypeId INT FOREIGN KEY REFERENCES VehicleType(Id)
+);
+
+
+CREATE TABLE Breakdown (
+    Id INT PRIMARY KEY IDENTITY,
+    VehicleId INT FOREIGN KEY REFERENCES Vehicle(Id),
+    Date DATE,
+    FailureReason NVARCHAR(255),
+    ReturnMethod NVARCHAR(100)
+);
+
+CREATE TABLE Client (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    FullName NVARCHAR(100) NOT NULL,
+    Passport NVARCHAR(50),
+    Address NVARCHAR(200),
+    Phone NVARCHAR(50),
+    IsLegalEntity BIT NOT NULL,
+    ContactPerson NVARCHAR(100) -- для юр. лиц
+);
+
+CREATE TABLE RentalContract (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ContractNumber NVARCHAR(50),
+    ContractDate DATE,
+    ClientId INT FOREIGN KEY REFERENCES Client(Id),
+    VehicleId INT FOREIGN KEY REFERENCES Vehicle(Id),
+    StartDate DATE,
+    EndDate DATE,
+    DailyPrice DECIMAL(10,2)
+);
+
+INSERT INTO VehicleType (Name, ShortName) VALUES
+(N'Легковой автомобиль', N'Легковой'),
+(N'Грузовой автомобиль', N'Грузовой'),
+(N'Прицеп', N'Прицеп');
+
+INSERT INTO Firm (Name, ShortName, Address) VALUES
+(N'ООО "АвтоПрокат"', N'АвтоПрокат', N'г. Оренбург, ул. Мира, 10');
+
+INSERT INTO Vehicle (NumberPlate, Model, ReleaseDate, TypeId) VALUES
+(N'A123BC56', N'LADA Vesta', '2021-05-01', 1),
+(N'B456DE56', N'KAMAZ 43118', '2019-03-12', 2),
+(N'C789FG56', N'Schmitz Trailer', '2020-07-20', 3);
+
+INSERT INTO Client (FullName, Passport, Address, Phone, IsLegalEntity, ContactPerson) VALUES
+(N'Иванов Иван Иванович', N'1234 567890', N'г. Оренбург, ул. Ленина, 15', N'+7 922 123-45-67', 0, NULL),
+(N'ООО "Рога и Копыта"', NULL, N'г. Оренбург, ул. Комсомольская, 88', N'+7 922 222-33-44', 1, N'Петров Петр Петрович');
+
+INSERT INTO RentalContract (ContractNumber, ContractDate, ClientId, VehicleId, StartDate, EndDate, DailyPrice) VALUES
+(N'001-2024', '2024-03-01', 1, 1, '2024-03-01', '2024-03-05', 1500.00),
+(N'002-2024', '2024-03-02', 2, 2, '2024-03-03', '2024-03-08', 4500.00);
+
+

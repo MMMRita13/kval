@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MedicalExaminationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LegalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="Rate" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MedicalExams" Relationship="Self.FK__MedicalEx__Emplo__3D5E1FD2" FromRole="Employees" ToRole="MedicalExams" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK__Notificat__Emplo__412EB0B6" FromRole="Employees" ToRole="Notifications" />
+  </EntityType>
+  <EntityType Name="ExamResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MedicalExams" Relationship="Self.FK__MedicalEx__Resul__3E52440B" FromRole="ExamResults" ToRole="MedicalExams" />
+  </EntityType>
+  <EntityType Name="MedicalExams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="ExamDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ResultId" Type="Int32" Nullable="false" />
+    <Property Name="DoctorName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DoctorPosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsPassed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__MedicalEx__Emplo__3D5E1FD2" FromRole="MedicalExams" ToRole="Employees" />
+    <NavigationProperty Name="ExamResults" Relationship="Self.FK__MedicalEx__Resul__3E52440B" FromRole="MedicalExams" ToRole="ExamResults" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+    <Property Name="NotificationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ClinicAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClinicPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SpecialistName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SpecialistPosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Employees" Relationship="Self.FK__Notificat__Emplo__412EB0B6" FromRole="Notifications" ToRole="Employees" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__MedicalEx__Emplo__3D5E1FD2">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="MedicalExams" Type="Self.MedicalExams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalExams">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificat__Emplo__412EB0B6">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedicalEx__Resul__3E52440B">
+    <End Role="ExamResults" Type="Self.ExamResults" Multiplicity="1" />
+    <End Role="MedicalExams" Type="Self.MedicalExams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExamResults">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalExams">
+        <PropertyRef Name="ResultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MedicalExaminationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Company" EntityType="Self.Company" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" />
+    <EntitySet Name="ExamResults" EntityType="Self.ExamResults" />
+    <EntitySet Name="MedicalExams" EntityType="Self.MedicalExams" />
+    <EntitySet Name="Notifications" EntityType="Self.Notifications" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__MedicalEx__Emplo__3D5E1FD2" Association="Self.FK__MedicalEx__Emplo__3D5E1FD2">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="MedicalExams" EntitySet="MedicalExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificat__Emplo__412EB0B6" Association="Self.FK__Notificat__Emplo__412EB0B6">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedicalEx__Resul__3E52440B" Association="Self.FK__MedicalEx__Resul__3E52440B">
+      <End Role="ExamResults" EntitySet="ExamResults" />
+      <End Role="MedicalExams" EntitySet="MedicalExams" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

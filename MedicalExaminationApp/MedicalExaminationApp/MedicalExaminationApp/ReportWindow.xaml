@@ -1,0 +1,36 @@
+﻿<Window x:Class="MedicalExaminationApp.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Отчеты" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="ReportType" Grid.Row="0" Margin="0 0 0 10">
+            <ComboBoxItem Content="Прошедшие осмотр"/>
+            <ComboBoxItem Content="Не явившиеся"/>
+        </ComboBox>
+
+        <!-- Панель для первого отчета -->
+        <StackPanel x:Name="DatePanel" Grid.Row="1" Orientation="Horizontal">
+            <DatePicker x:Name="StartDate" Margin="0 0 10 0" Width="120"/>
+            <DatePicker x:Name="EndDate" Margin="0 0 10 0" Width="120"/>
+            <Button Content="Сформировать" Click="GenerateReport_Click" Padding="5"/>
+        </StackPanel>
+
+        <DataGrid x:Name="ReportGrid" Grid.Row="2" AutoGenerateColumns="True"/>
+
+        <Grid.Resources>
+            <Style TargetType="StackPanel" x:Key="ReportPanelStyle">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding ElementName=ReportType, Path=SelectedIndex}" Value="1">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+    </Grid>
+</Window>

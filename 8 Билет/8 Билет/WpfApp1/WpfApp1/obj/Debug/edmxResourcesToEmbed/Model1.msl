@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище RepairMMModelContainer" CdmEntityContainer="RepairMMEntities">
+    <EntitySetMapping Name="Company">
+      <EntityTypeMapping TypeName="RepairMMModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="Company_FullName" ColumnName="Company_FullName" />
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+          <ScalarProperty Name="Company_Address" ColumnName="Company_Address" />
+          <ScalarProperty Name="Company_Number" ColumnName="Company_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyUsers">
+      <EntityTypeMapping TypeName="RepairMMModel.CompanyUsers">
+        <MappingFragment StoreEntitySet="CompanyUsers">
+          <ScalarProperty Name="CompanyUsers_Id" ColumnName="CompanyUsers_Id" />
+          <ScalarProperty Name="CompanyUsers_Name" ColumnName="CompanyUsers_Name" />
+          <ScalarProperty Name="CompanyUsers_Post" ColumnName="CompanyUsers_Post" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Individual">
+      <EntityTypeMapping TypeName="RepairMMModel.Individual">
+        <MappingFragment StoreEntitySet="Individual">
+          <ScalarProperty Name="Individual_Id" ColumnName="Individual_Id" />
+          <ScalarProperty Name="Individual_FIO" ColumnName="Individual_FIO" />
+          <ScalarProperty Name="Individual_Address" ColumnName="Individual_Address" />
+          <ScalarProperty Name="Individual_Number" ColumnName="Individual_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Legal">
+      <EntityTypeMapping TypeName="RepairMMModel.Legal">
+        <MappingFragment StoreEntitySet="Legal">
+          <ScalarProperty Name="Legal_Id" ColumnName="Legal_Id" />
+          <ScalarProperty Name="Legal_Name" ColumnName="Legal_Name" />
+          <ScalarProperty Name="Legal_Number" ColumnName="Legal_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NumberComm">
+      <EntityTypeMapping TypeName="RepairMMModel.NumberComm">
+        <MappingFragment StoreEntitySet="NumberComm">
+          <ScalarProperty Name="NumberComm1" ColumnName="NumberComm" />
+          <ScalarProperty Name="NumberComm_Date" ColumnName="NumberComm_Date" />
+          <ScalarProperty Name="ViewComm_Id" ColumnName="ViewComm_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Receipt">
+      <EntityTypeMapping TypeName="RepairMMModel.Receipt">
+        <MappingFragment StoreEntitySet="Receipt">
+          <ScalarProperty Name="Receipt_Id" ColumnName="Receipt_Id" />
+          <ScalarProperty Name="Receipt_Date" ColumnName="Receipt_Date" />
+          <ScalarProperty Name="Receipt_RepeirDate" ColumnName="Receipt_RepeirDate" />
+          <ScalarProperty Name="Receipt_EndRepeirDate" ColumnName="Receipt_EndRepeirDate" />
+          <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+          <ScalarProperty Name="CompanyUsers_Id" ColumnName="CompanyUsers_Id" />
+          <ScalarProperty Name="RepeirCause_Id" ColumnName="RepeirCause_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RepeirCause">
+      <EntityTypeMapping TypeName="RepairMMModel.RepeirCause">
+        <MappingFragment StoreEntitySet="RepeirCause">
+          <ScalarProperty Name="RepeirCause_Id" ColumnName="RepeirCause_Id" />
+          <ScalarProperty Name="RepeirCause_Name" ColumnName="RepeirCause_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ViewComm">
+      <EntityTypeMapping TypeName="RepairMMModel.ViewComm">
+        <MappingFragment StoreEntitySet="ViewComm">
+          <ScalarProperty Name="ViewComm_Id" ColumnName="ViewComm_Id" />
+          <ScalarProperty Name="ViewComm_FullName" ColumnName="ViewComm_FullName" />
+          <ScalarProperty Name="ViewComm_Name" ColumnName="ViewComm_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

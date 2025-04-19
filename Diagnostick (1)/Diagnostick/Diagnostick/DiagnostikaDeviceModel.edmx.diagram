@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="410547e272e74e3f89b3022216fa775d" Name="Diagram1">
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.Diagnostics" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.Enterprises" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.Equipment" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.EquipmentAssignments" Width="1.5" PointX="10.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.Sites" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiagnostikaDeviceModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="DiagnostikaDeviceModel.FK__Diagnosti__Equip__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DiagnostikaDeviceModel.FK__Sites__Enterpris__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DiagnostikaDeviceModel.FK__Equipment__Equip__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DiagnostikaDeviceModel.FK__Equipment__SiteI__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DiagnostikaDeviceModel.FK__Equipment__SiteI__403A8C7D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

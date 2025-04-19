@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Home-Pc\\Desktop\\Orders\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|c:\\users\\home-pc\\desktop\\orders\\reportswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:reportswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|c:\\users\\home-pc\\desktop\\orders\\reportswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:reportswindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|C:\\Users\\Home-Pc\\Desktop\\Orders\\neworderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:neworderwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|C:\\Users\\Home-Pc\\Desktop\\Orders\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|c:\\users\\home-pc\\desktop\\orders\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|C:\\Users\\Home-Pc\\Desktop\\Orders\\neworderwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9C9A9E3A-9B56-403B-87BE-E2914E686DAB}|Orders.csproj|solutionrelative:neworderwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{bdada759-5db7-402f-96e3-402b17c8c5b4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{5da8d69b-058a-4294-a87a-f4f7ae2983b3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReportsWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\ReportsWindow.xaml",
+              "RelativeDocumentMoniker": "ReportsWindow.xaml",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\ReportsWindow.xaml",
+              "RelativeToolTip": "ReportsWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-18T17:13:44.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportsWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\ReportsWindow.xaml.cs",
+              "RelativeDocumentMoniker": "ReportsWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\ReportsWindow.xaml.cs",
+              "RelativeToolTip": "ReportsWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T17:14:31.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewOrderWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\NewOrderWindow.xaml",
+              "RelativeDocumentMoniker": "NewOrderWindow.xaml",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\NewOrderWindow.xaml",
+              "RelativeToolTip": "NewOrderWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-18T14:46:09.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NewOrderWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\NewOrderWindow.xaml.cs",
+              "RelativeDocumentMoniker": "NewOrderWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\NewOrderWindow.xaml.cs",
+              "RelativeToolTip": "NewOrderWindow.xaml.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAmwBAAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T14:46:12.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-18T14:44:00.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Home-Pc\\Desktop\\Orders\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Home-Pc\\Desktop\\Orders\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T14:44:00.426Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+CREATE DATABASE RepairMM;
+
+CREATE TABLE Company (
+Company_Id INT IDENTITY(1,1) PRIMARY KEY,
+Company_FullName NVARCHAR(50),
+Company_Name NVARCHAR(10),
+Company_Address NVARCHAR(30),
+Company_Number NVARCHAR(15)
+);
+
+CREATE TABLE CompanyUsers(
+CompanyUsers_Id INT IDENTITY(1,1) PRIMARY KEY,
+CompanyUsers_Name NVARCHAR(50),
+CompanyUsers_Post NVARCHAR(50),
+Company_Id INT,
+FOREIGN KEY (Company_Id) REFERENCES Company(Company_Id)
+);
+
+CREATE TABLE RepeirCause (
+RepeirCause_Id INT IDENTITY(1,1) PRIMARY KEY,
+RepeirCause_Name NVARCHAR(100)
+);
+
+CREATE TABLE ViewComm (
+ViewComm_Id INT IDENTITY(1,1) PRIMARY KEY,
+ViewComm_FullName NVARCHAR(30),
+ViewComm_Name NVARCHAR(20)
+);
+
+CREATE TABLE NumberComm (
+NumberComm INT IDENTITY(1,1) PRIMARY KEY,
+NumberComm_Date DATE,
+ViewComm_Id INT,
+FOREIGN KEY (ViewComm_Id) REFERENCES ViewComm(ViewComm_Id)
+);
+
+CREATE TABLE Individual(
+Individual_Id INT IDENTITY(1,1) PRIMARY KEY,
+Individual_FIO NVARCHAR(50),
+Individual_Address NVARCHAR(50),
+Individual_Number NVARCHAR(15)
+);
+
+CREATE TABLE Legal (
+Legal_Id INT IDENTITY(1,1) PRIMARY KEY,
+Legal_Name NVARCHAR(50),
+Legal_Number Nvarchar(15)
+);
+
+CREATE TABLE Receipt (
+Receipt_Id INT IDENTITY(1,1) PRIMARY KEY,
+Receipt_Date DATE,
+Receipt_RepeirDate Date,
+Receipt_EndRepeirDate Date,
+Company_Id INT,
+CompanyUsers_Id INT,
+RepeirCause_Id INT,
+FOREIGN KEY (Company_Id) REFERENCES Company(Company_Id),
+FOREIGN KEY (CompanyUsers_Id) REFERENCES CompanyUsers(CompanyUsers_Id),
+FOREIGN KEY (RepeirCause_Id) REFERENCES RepeirCause(RepeirCause_Id)
+);
+
+
+
+---------------------------------
+
+
+
+INSERT INTO Company
+VALUES 
+('ИП Иванов И.И.', 'Иванов', 'Оренбург, ул. Ленина, д. 5', '78431234567');
+
+INSERT INTO CompanyUsers
+VALUES 
+('Петров Петр Петрович', 'Сотрудник', 1),
+('Сидоров Сидор Сидорович', 'Сотрудник', 1),
+('Кузнецова Анна Сергеевна', 'Руководитель по клиентам', 1),
+('Иванов Иван Иванович', 'Руководитель Организации', 1);
+
+INSERT INTO RepeirCause
+VALUES 
+('Задержка компонентов'),
+('Несколько поломок');
+
+INSERT INTO ViewComm
+VALUES 
+('Общий осмотр', 'Осмотр'),
+('Техническое обслуживание', 'ТО'),
+('Ремонт аккумулятора', 'Ремонт БТ'),
+('Ремонт дисплея', 'Ремонт ДС');
+
+
+INSERT INTO NumberComm
+VALUES 
+('2023-01-15', 1),
+('2023-02-20', 2),
+('2023-03-10', 3),
+('2023-04-05', 4);
+
+INSERT INTO Individual
+VALUES 
+('Иванов Иван Иванович', 'Москва, ул. Первомайская, д. 10', '74951112233'),
+('Петрова Анна Сергеевна', 'Санкт-Петербург, ул. Невская, д. 20', '78124445566');
+
+
+INSERT INTO Legal
+VALUES 
+('ООО Звезда', '74952223344'),
+('ООО Солнце', '78127778899');
+
+INSERT INTO Receipt
+VALUES 
+('2023-05-01', '2023-05-02', '2023-05-03', 1, 1,1),
+('2023-06-10', '2023-06-11', '2023-06-12', 1, 2,1),
+('2023-07-15', '2023-07-16', '2023-07-17', 1, 1,1);

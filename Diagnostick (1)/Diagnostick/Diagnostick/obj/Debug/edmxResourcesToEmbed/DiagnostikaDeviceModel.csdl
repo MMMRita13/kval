@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DiagnostikaDeviceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Diagnostics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+    <Property Name="MeasureDateTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ParameterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="Double" Nullable="false" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MinValue" Type="Double" />
+    <Property Name="MaxValue" Type="Double" />
+    <Property Name="EmployeeFullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeePosition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalOrganizationName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalOrganizationAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK__Diagnosti__Equip__5070F446" FromRole="Diagnostics" ToRole="Equipment" />
+  </EntityType>
+  <EntityType Name="Enterprises">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LegalAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sites" Relationship="Self.FK__Sites__Enterpris__398D8EEE" FromRole="Enterprises" ToRole="Sites" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="SiteId" Type="Int32" />
+    <NavigationProperty Name="Diagnostics" Relationship="Self.FK__Diagnosti__Equip__5070F446" FromRole="Equipment" ToRole="Diagnostics" />
+    <NavigationProperty Name="EquipmentAssignments" Relationship="Self.FK__Equipment__Equip__3F466844" FromRole="Equipment" ToRole="EquipmentAssignments" />
+    <NavigationProperty Name="Sites" Relationship="Self.FK__Equipment__SiteI__3C69FB99" FromRole="Equipment" ToRole="Sites" />
+  </EntityType>
+  <EntityType Name="EquipmentAssignments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+    <Property Name="SiteId" Type="Int32" Nullable="false" />
+    <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AssignmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__Equip__3F466844" FromRole="EquipmentAssignments" ToRole="Equipment" />
+    <NavigationProperty Name="Sites" Relationship="Self.FK__Equipment__SiteI__403A8C7D" FromRole="EquipmentAssignments" ToRole="Sites" />
+  </EntityType>
+  <EntityType Name="Sites">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EnterpriseId" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Latitude" Type="Double" Nullable="false" />
+    <Property Name="Longitude" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Enterprises" Relationship="Self.FK__Sites__Enterpris__398D8EEE" FromRole="Sites" ToRole="Enterprises" />
+    <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__SiteI__3C69FB99" FromRole="Sites" ToRole="Equipment" />
+    <NavigationProperty Name="EquipmentAssignments" Relationship="Self.FK__Equipment__SiteI__403A8C7D" FromRole="Sites" ToRole="EquipmentAssignments" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK__Diagnosti__Equip__5070F446">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="Diagnostics" Type="Self.Diagnostics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Diagnostics">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sites__Enterpris__398D8EEE">
+    <End Role="Enterprises" Type="Self.Enterprises" Multiplicity="1" />
+    <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enterprises">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sites">
+        <PropertyRef Name="EnterpriseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__Equip__3F466844">
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+    <End Role="EquipmentAssignments" Type="Self.EquipmentAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentAssignments">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__SiteI__3C69FB99">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+    <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="SiteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Equipment__SiteI__403A8C7D">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+    <End Role="EquipmentAssignments" Type="Self.EquipmentAssignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentAssignments">
+        <PropertyRef Name="SiteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DiagnostikaDeviceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Diagnostics" EntityType="Self.Diagnostics" />
+    <EntitySet Name="Enterprises" EntityType="Self.Enterprises" />
+    <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+    <EntitySet Name="EquipmentAssignments" EntityType="Self.EquipmentAssignments" />
+    <EntitySet Name="Sites" EntityType="Self.Sites" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK__Diagnosti__Equip__5070F446" Association="Self.FK__Diagnosti__Equip__5070F446">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="Diagnostics" EntitySet="Diagnostics" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sites__Enterpris__398D8EEE" Association="Self.FK__Sites__Enterpris__398D8EEE">
+      <End Role="Enterprises" EntitySet="Enterprises" />
+      <End Role="Sites" EntitySet="Sites" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__Equip__3F466844" Association="Self.FK__Equipment__Equip__3F466844">
+      <End Role="Equipment" EntitySet="Equipment" />
+      <End Role="EquipmentAssignments" EntitySet="EquipmentAssignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__SiteI__3C69FB99" Association="Self.FK__Equipment__SiteI__3C69FB99">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="Equipment" EntitySet="Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Equipment__SiteI__403A8C7D" Association="Self.FK__Equipment__SiteI__403A8C7D">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="EquipmentAssignments" EntitySet="EquipmentAssignments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

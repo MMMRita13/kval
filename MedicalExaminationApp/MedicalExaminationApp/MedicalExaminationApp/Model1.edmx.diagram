@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f16a0ac202a4aeca129286483bb48c1" Name="Diagram1">
+        <EntityTypeShape EntityType="MedicalExaminationModel.Company" Width="1.5" PointX="5.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalExaminationModel.Employees" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalExaminationModel.ExamResults" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalExaminationModel.MedicalExams" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalExaminationModel.Notifications" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MedicalExaminationModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="MedicalExaminationModel.FK__MedicalEx__Emplo__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalExaminationModel.FK__Notificat__Emplo__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="MedicalExaminationModel.FK__MedicalEx__Resul__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

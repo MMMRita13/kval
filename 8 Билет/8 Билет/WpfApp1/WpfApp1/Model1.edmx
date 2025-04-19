@@ -1,0 +1,453 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RepairMMModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_Id" />
+          </Key>
+          <Property Name="Company_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company_FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company_Name" Type="nvarchar" MaxLength="10" />
+          <Property Name="Company_Address" Type="nvarchar" MaxLength="30" />
+          <Property Name="Company_Number" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="CompanyUsers">
+          <Key>
+            <PropertyRef Name="CompanyUsers_Id" />
+          </Key>
+          <Property Name="CompanyUsers_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyUsers_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyUsers_Post" Type="nvarchar" MaxLength="50" />
+          <Property Name="Company_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Individual">
+          <Key>
+            <PropertyRef Name="Individual_Id" />
+          </Key>
+          <Property Name="Individual_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Individual_FIO" Type="nvarchar" MaxLength="50" />
+          <Property Name="Individual_Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Individual_Number" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Legal">
+          <Key>
+            <PropertyRef Name="Legal_Id" />
+          </Key>
+          <Property Name="Legal_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Legal_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Legal_Number" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="NumberComm">
+          <Key>
+            <PropertyRef Name="NumberComm" />
+          </Key>
+          <Property Name="NumberComm" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumberComm_Date" Type="date" />
+          <Property Name="ViewComm_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="Receipt_Id" />
+          </Key>
+          <Property Name="Receipt_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Receipt_Date" Type="date" />
+          <Property Name="Receipt_RepeirDate" Type="date" />
+          <Property Name="Receipt_EndRepeirDate" Type="date" />
+          <Property Name="Company_Id" Type="int" />
+          <Property Name="CompanyUsers_Id" Type="int" />
+          <Property Name="RepeirCause_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="RepeirCause">
+          <Key>
+            <PropertyRef Name="RepeirCause_Id" />
+          </Key>
+          <Property Name="RepeirCause_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepeirCause_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ViewComm">
+          <Key>
+            <PropertyRef Name="ViewComm_Id" />
+          </Key>
+          <Property Name="ViewComm_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ViewComm_FullName" Type="nvarchar" MaxLength="30" />
+          <Property Name="ViewComm_Name" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__CompanyUs__Compa__398D8EEE">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyUsers" Type="Self.CompanyUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_Id" />
+            </Principal>
+            <Dependent Role="CompanyUsers">
+              <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NumberCom__ViewC__403A8C7D">
+          <End Role="ViewComm" Type="Self.ViewComm" Multiplicity="0..1" />
+          <End Role="NumberComm" Type="Self.NumberComm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewComm">
+              <PropertyRef Name="ViewComm_Id" />
+            </Principal>
+            <Dependent Role="NumberComm">
+              <PropertyRef Name="ViewComm_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__Company__46E78A0C">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__Company__47DBAE45">
+          <End Role="CompanyUsers" Type="Self.CompanyUsers" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyUsers">
+              <PropertyRef Name="CompanyUsers_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="CompanyUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__RepeirC__48CFD27E">
+          <End Role="RepeirCause" Type="Self.RepeirCause" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepeirCause">
+              <PropertyRef Name="RepeirCause_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="RepeirCause_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище RepairMMModelContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyUsers" EntityType="Self.CompanyUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Individual" EntityType="Self.Individual" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Legal" EntityType="Self.Legal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NumberComm" EntityType="Self.NumberComm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipt" EntityType="Self.Receipt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepeirCause" EntityType="Self.RepeirCause" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ViewComm" EntityType="Self.ViewComm" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CompanyUs__Compa__398D8EEE" Association="Self.FK__CompanyUs__Compa__398D8EEE">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyUsers" EntitySet="CompanyUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NumberCom__ViewC__403A8C7D" Association="Self.FK__NumberCom__ViewC__403A8C7D">
+            <End Role="ViewComm" EntitySet="ViewComm" />
+            <End Role="NumberComm" EntitySet="NumberComm" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__Company__46E78A0C" Association="Self.FK__Receipt__Company__46E78A0C">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__Company__47DBAE45" Association="Self.FK__Receipt__Company__47DBAE45">
+            <End Role="CompanyUsers" EntitySet="CompanyUsers" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__RepeirC__48CFD27E" Association="Self.FK__Receipt__RepeirC__48CFD27E">
+            <End Role="RepeirCause" EntitySet="RepeirCause" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RepairMMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_Id" />
+          </Key>
+          <Property Name="Company_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company_FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Company_Address" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Company_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompanyUsers" Relationship="Self.FK__CompanyUs__Compa__398D8EEE" FromRole="Company" ToRole="CompanyUsers" />
+          <NavigationProperty Name="Receipt" Relationship="Self.FK__Receipt__Company__46E78A0C" FromRole="Company" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="CompanyUsers">
+          <Key>
+            <PropertyRef Name="CompanyUsers_Id" />
+          </Key>
+          <Property Name="CompanyUsers_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyUsers_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyUsers_Post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Company_Id" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK__CompanyUs__Compa__398D8EEE" FromRole="CompanyUsers" ToRole="Company" />
+          <NavigationProperty Name="Receipt" Relationship="Self.FK__Receipt__Company__47DBAE45" FromRole="CompanyUsers" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="Individual">
+          <Key>
+            <PropertyRef Name="Individual_Id" />
+          </Key>
+          <Property Name="Individual_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Individual_FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Individual_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Individual_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Legal">
+          <Key>
+            <PropertyRef Name="Legal_Id" />
+          </Key>
+          <Property Name="Legal_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Legal_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Legal_Number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="NumberComm">
+          <Key>
+            <PropertyRef Name="NumberComm1" />
+          </Key>
+          <Property Name="NumberComm1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumberComm_Date" Type="DateTime" Precision="0" />
+          <Property Name="ViewComm_Id" Type="Int32" />
+          <NavigationProperty Name="ViewComm" Relationship="Self.FK__NumberCom__ViewC__403A8C7D" FromRole="NumberComm" ToRole="ViewComm" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="Receipt_Id" />
+          </Key>
+          <Property Name="Receipt_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Receipt_Date" Type="DateTime" Precision="0" />
+          <Property Name="Receipt_RepeirDate" Type="DateTime" Precision="0" />
+          <Property Name="Receipt_EndRepeirDate" Type="DateTime" Precision="0" />
+          <Property Name="Company_Id" Type="Int32" />
+          <Property Name="CompanyUsers_Id" Type="Int32" />
+          <Property Name="RepeirCause_Id" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK__Receipt__Company__46E78A0C" FromRole="Receipt" ToRole="Company" />
+          <NavigationProperty Name="CompanyUsers" Relationship="Self.FK__Receipt__Company__47DBAE45" FromRole="Receipt" ToRole="CompanyUsers" />
+          <NavigationProperty Name="RepeirCause" Relationship="Self.FK__Receipt__RepeirC__48CFD27E" FromRole="Receipt" ToRole="RepeirCause" />
+        </EntityType>
+        <EntityType Name="RepeirCause">
+          <Key>
+            <PropertyRef Name="RepeirCause_Id" />
+          </Key>
+          <Property Name="RepeirCause_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepeirCause_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Receipt" Relationship="Self.FK__Receipt__RepeirC__48CFD27E" FromRole="RepeirCause" ToRole="Receipt" />
+        </EntityType>
+        <EntityType Name="ViewComm">
+          <Key>
+            <PropertyRef Name="ViewComm_Id" />
+          </Key>
+          <Property Name="ViewComm_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ViewComm_FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ViewComm_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NumberComm" Relationship="Self.FK__NumberCom__ViewC__403A8C7D" FromRole="ViewComm" ToRole="NumberComm" />
+        </EntityType>
+        <Association Name="FK__CompanyUs__Compa__398D8EEE">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyUsers" Type="Self.CompanyUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_Id" />
+            </Principal>
+            <Dependent Role="CompanyUsers">
+              <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__Company__46E78A0C">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Company_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="Company_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__Company__47DBAE45">
+          <End Role="CompanyUsers" Type="Self.CompanyUsers" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CompanyUsers">
+              <PropertyRef Name="CompanyUsers_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="CompanyUsers_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NumberCom__ViewC__403A8C7D">
+          <End Role="ViewComm" Type="Self.ViewComm" Multiplicity="0..1" />
+          <End Role="NumberComm" Type="Self.NumberComm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ViewComm">
+              <PropertyRef Name="ViewComm_Id" />
+            </Principal>
+            <Dependent Role="NumberComm">
+              <PropertyRef Name="ViewComm_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Receipt__RepeirC__48CFD27E">
+          <End Role="RepeirCause" Type="Self.RepeirCause" Multiplicity="0..1" />
+          <End Role="Receipt" Type="Self.Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepeirCause">
+              <PropertyRef Name="RepeirCause_Id" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="RepeirCause_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RepairMMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="CompanyUsers" EntityType="Self.CompanyUsers" />
+          <EntitySet Name="Individual" EntityType="Self.Individual" />
+          <EntitySet Name="Legal" EntityType="Self.Legal" />
+          <EntitySet Name="NumberComm" EntityType="Self.NumberComm" />
+          <EntitySet Name="Receipt" EntityType="Self.Receipt" />
+          <EntitySet Name="RepeirCause" EntityType="Self.RepeirCause" />
+          <EntitySet Name="ViewComm" EntityType="Self.ViewComm" />
+          <AssociationSet Name="FK__CompanyUs__Compa__398D8EEE" Association="Self.FK__CompanyUs__Compa__398D8EEE">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyUsers" EntitySet="CompanyUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__Company__46E78A0C" Association="Self.FK__Receipt__Company__46E78A0C">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__Company__47DBAE45" Association="Self.FK__Receipt__Company__47DBAE45">
+            <End Role="CompanyUsers" EntitySet="CompanyUsers" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NumberCom__ViewC__403A8C7D" Association="Self.FK__NumberCom__ViewC__403A8C7D">
+            <End Role="ViewComm" EntitySet="ViewComm" />
+            <End Role="NumberComm" EntitySet="NumberComm" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Receipt__RepeirC__48CFD27E" Association="Self.FK__Receipt__RepeirC__48CFD27E">
+            <End Role="RepeirCause" EntitySet="RepeirCause" />
+            <End Role="Receipt" EntitySet="Receipt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RepairMMModelContainer" CdmEntityContainer="RepairMMEntities">
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="RepairMMModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+                <ScalarProperty Name="Company_FullName" ColumnName="Company_FullName" />
+                <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+                <ScalarProperty Name="Company_Address" ColumnName="Company_Address" />
+                <ScalarProperty Name="Company_Number" ColumnName="Company_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyUsers">
+            <EntityTypeMapping TypeName="RepairMMModel.CompanyUsers">
+              <MappingFragment StoreEntitySet="CompanyUsers">
+                <ScalarProperty Name="CompanyUsers_Id" ColumnName="CompanyUsers_Id" />
+                <ScalarProperty Name="CompanyUsers_Name" ColumnName="CompanyUsers_Name" />
+                <ScalarProperty Name="CompanyUsers_Post" ColumnName="CompanyUsers_Post" />
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Individual">
+            <EntityTypeMapping TypeName="RepairMMModel.Individual">
+              <MappingFragment StoreEntitySet="Individual">
+                <ScalarProperty Name="Individual_Id" ColumnName="Individual_Id" />
+                <ScalarProperty Name="Individual_FIO" ColumnName="Individual_FIO" />
+                <ScalarProperty Name="Individual_Address" ColumnName="Individual_Address" />
+                <ScalarProperty Name="Individual_Number" ColumnName="Individual_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Legal">
+            <EntityTypeMapping TypeName="RepairMMModel.Legal">
+              <MappingFragment StoreEntitySet="Legal">
+                <ScalarProperty Name="Legal_Id" ColumnName="Legal_Id" />
+                <ScalarProperty Name="Legal_Name" ColumnName="Legal_Name" />
+                <ScalarProperty Name="Legal_Number" ColumnName="Legal_Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NumberComm">
+            <EntityTypeMapping TypeName="RepairMMModel.NumberComm">
+              <MappingFragment StoreEntitySet="NumberComm">
+                <ScalarProperty Name="NumberComm1" ColumnName="NumberComm" />
+                <ScalarProperty Name="NumberComm_Date" ColumnName="NumberComm_Date" />
+                <ScalarProperty Name="ViewComm_Id" ColumnName="ViewComm_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipt">
+            <EntityTypeMapping TypeName="RepairMMModel.Receipt">
+              <MappingFragment StoreEntitySet="Receipt">
+                <ScalarProperty Name="Receipt_Id" ColumnName="Receipt_Id" />
+                <ScalarProperty Name="Receipt_Date" ColumnName="Receipt_Date" />
+                <ScalarProperty Name="Receipt_RepeirDate" ColumnName="Receipt_RepeirDate" />
+                <ScalarProperty Name="Receipt_EndRepeirDate" ColumnName="Receipt_EndRepeirDate" />
+                <ScalarProperty Name="Company_Id" ColumnName="Company_Id" />
+                <ScalarProperty Name="CompanyUsers_Id" ColumnName="CompanyUsers_Id" />
+                <ScalarProperty Name="RepeirCause_Id" ColumnName="RepeirCause_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepeirCause">
+            <EntityTypeMapping TypeName="RepairMMModel.RepeirCause">
+              <MappingFragment StoreEntitySet="RepeirCause">
+                <ScalarProperty Name="RepeirCause_Id" ColumnName="RepeirCause_Id" />
+                <ScalarProperty Name="RepeirCause_Name" ColumnName="RepeirCause_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ViewComm">
+            <EntityTypeMapping TypeName="RepairMMModel.ViewComm">
+              <MappingFragment StoreEntitySet="ViewComm">
+                <ScalarProperty Name="ViewComm_Id" ColumnName="ViewComm_Id" />
+                <ScalarProperty Name="ViewComm_FullName" ColumnName="ViewComm_FullName" />
+                <ScalarProperty Name="ViewComm_Name" ColumnName="ViewComm_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

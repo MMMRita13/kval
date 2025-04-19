@@ -1,0 +1,109 @@
+CREATE DATABASE DiagnostikaDevice;
+GO
+
+USE DiagnostikaDevice;
+GO
+
+-- Создание таблицы предприятий
+CREATE TABLE Enterprises (
+    Id INT PRIMARY KEY IDENTITY, -- Уникальный идентификатор предприятия
+    Code NVARCHAR(50) NOT NULL, -- Код предприятия
+    Name NVARCHAR(200) NOT NULL, -- Полное наименование
+    ShortName NVARCHAR(100), -- Краткое наименование
+    LegalAddress NVARCHAR(300) NOT NULL -- Юридический адрес
+);
+
+-- Создание таблицы участков предприятия
+CREATE TABLE Sites (
+    Id INT PRIMARY KEY IDENTITY, -- Уникальный идентификатор участка
+    EnterpriseId INT NOT NULL, -- Ссылка на предприятие
+    Code NVARCHAR(50) NOT NULL, -- Код участка
+    Name NVARCHAR(200) NOT NULL, -- Название участка
+    Latitude FLOAT NOT NULL, -- Широта
+    Longitude FLOAT NOT NULL, -- Долгота
+    FOREIGN KEY (EnterpriseId) REFERENCES Enterprises(Id) -- Внешний ключ на Enterprises
+);
+
+-- Создание таблицы оборудования
+CREATE TABLE Equipment (
+    Id INT PRIMARY KEY IDENTITY, -- Уникальный идентификатор оборудования
+    Number NVARCHAR(50) NOT NULL, -- Учетный номер оборудования
+    Name NVARCHAR(200) NOT NULL, -- Наименование оборудования
+    StartDate DATE NOT NULL, -- Дата начала эксплуатации
+    EndDate DATE, -- Дата окончания эксплуатации
+    SiteId INT, -- Текущий участок (может быть NULL, если не закреплено)
+    FOREIGN KEY (SiteId) REFERENCES Sites(Id) -- Внешний ключ на Sites
+);
+
+-- Создание таблицы истории закрепления оборудования
+CREATE TABLE EquipmentAssignments (
+    Id INT PRIMARY KEY IDENTITY, -- Уникальный идентификатор записи
+    EquipmentId INT NOT NULL, -- Ссылка на оборудование
+    SiteId INT NOT NULL, -- Ссылка на участок
+    OrderNumber NVARCHAR(50) NOT NULL, -- Номер распоряжения
+    OrderDate DATE NOT NULL, -- Дата распоряжения
+    AssignmentDate DATE NOT NULL, -- Дата фактического закрепления
+    FOREIGN KEY (EquipmentId) REFERENCES Equipment(Id), -- Внешний ключ на Equipment
+    FOREIGN KEY (SiteId) REFERENCES Sites(Id) -- Внешний ключ на Sites
+);
+
+-- Создание таблицы диагностики оборудования
+CREATE TABLE Diagnostics (
+    Id INT PRIMARY KEY IDENTITY, -- Уникальный идентификатор измерения
+    EquipmentId INT NOT NULL, -- Ссылка на оборудование
+    MeasureDateTime DATE NOT NULL, -- Дата и время измерения
+    ParameterName NVARCHAR(100) NOT NULL, -- Наименование параметра
+    Value FLOAT NOT NULL, -- Измеренное значение
+    Unit NVARCHAR(50), -- Единица измерения
+    MinValue FLOAT, -- Минимально допустимое значение
+    MaxValue FLOAT, -- Максимально допустимое значение
+    EmployeeFullName NVARCHAR(200), -- ФИО сотрудника
+    EmployeePosition NVARCHAR(100), -- Должность
+    Department NVARCHAR(100), -- Название подразделения
+    ExternalOrganizationName NVARCHAR(200), -- Название внешней организации (если применимо)
+    ExternalOrganizationAddress NVARCHAR(300), -- Адрес внешней организации
+    FOREIGN KEY (EquipmentId) REFERENCES Equipment(Id) -- Внешний ключ на Equipment
+);
+
+
+-- Вставка предприятия
+INSERT INTO Enterprises (Code, Name, ShortName, LegalAddress)
+VALUES 
+('ENT001', 'АО "ЭнергоСервис"', 'ЭнергоСервис', 'г. Москва, ул. Ленина, д. 12');
+
+-- Вставка участков
+INSERT INTO Sites (EnterpriseId, Code, Name, Latitude, Longitude)
+VALUES 
+(1, 'SITE001', 'Участок Северный', 55.751244, 37.618423),
+(1, 'SITE002', 'Участок Южный', 55.641244, 37.528423);
+
+-- Вставка оборудования
+INSERT INTO Equipment (Number, Name, StartDate, EndDate, SiteId)
+VALUES 
+('EQ001', 'Станция измерительная СИ-100', '2021-01-10', NULL, 1),
+('EQ002', 'Блок телеметрии БТ-200', '2020-06-01', NULL, 2),
+('EQ003', 'Датчик тока ДТ-300', '2022-03-15', NULL, NULL); -- пока не закреплён
+
+-- Вставка закреплений оборудования
+INSERT INTO EquipmentAssignments (EquipmentId, SiteId, OrderNumber, OrderDate, AssignmentDate)
+VALUES 
+(1, 1, 'ORD-001', '2021-01-09', '2021-01-10'),
+(2, 2, 'ORD-002', '2020-05-30', '2020-06-01'),
+(3, 1, 'ORD-003', '2022-03-14', '2022-03-15');
+
+-- Вставка диагностики
+INSERT INTO Diagnostics (
+    EquipmentId, MeasureDateTime, ParameterName, Value, Unit, 
+    MinValue, MaxValue, EmployeeFullName, EmployeePosition, Department, 
+    ExternalOrganizationName, ExternalOrganizationAddress)
+VALUES 
+-- Внутренний сотрудник
+(1, '2023-12-01', 'Температура', 36.5, '°C', 20.0, 70.0, 
+ 'Иванов Иван Иванович', 'Инженер-диагност', 'Отдел диагностики', NULL, NULL),
+
+(1, '2023-12-01', 'Напряжение', 220, 'В', 210, 230, 
+ 'Иванов Иван Иванович', 'Инженер-диагност', 'Отдел диагностики', NULL, NULL),
+
+-- Внешняя организация
+(2, '2024-02-15', 'Частота сигнала', 50.0, 'Гц', 49.5, 50.5, 
+ NULL, NULL, NULL, 'ООО "ТехКонтроль"', 'г. Санкт-Петербург, ул. Свободы, д. 5');

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище MedicalExaminationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LegalAddress" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="Rate" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExamResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MedicalExams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="ExamDate" Type="date" Nullable="false" />
+    <Property Name="ResultId" Type="int" Nullable="false" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DoctorPosition" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsPassed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" Nullable="false" />
+    <Property Name="NotificationDate" Type="date" Nullable="false" />
+    <Property Name="ClinicAddress" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ClinicPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="SpecialistName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SpecialistPosition" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK__MedicalEx__Emplo__3D5E1FD2">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="MedicalExams" Type="Self.MedicalExams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalExams">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MedicalEx__Resul__3E52440B">
+    <End Role="ExamResults" Type="Self.ExamResults" Multiplicity="1" />
+    <End Role="MedicalExams" Type="Self.MedicalExams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExamResults">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MedicalExams">
+        <PropertyRef Name="ResultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Notificat__Emplo__412EB0B6">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+    <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="EmployeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище MedicalExaminationModelContainer">
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamResults" EntityType="Self.ExamResults" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicalExams" EntityType="Self.MedicalExams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MedicalEx__Emplo__3D5E1FD2" Association="Self.FK__MedicalEx__Emplo__3D5E1FD2">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="MedicalExams" EntitySet="MedicalExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MedicalEx__Resul__3E52440B" Association="Self.FK__MedicalEx__Resul__3E52440B">
+      <End Role="ExamResults" EntitySet="ExamResults" />
+      <End Role="MedicalExams" EntitySet="MedicalExams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Notificat__Emplo__412EB0B6" Association="Self.FK__Notificat__Emplo__412EB0B6">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

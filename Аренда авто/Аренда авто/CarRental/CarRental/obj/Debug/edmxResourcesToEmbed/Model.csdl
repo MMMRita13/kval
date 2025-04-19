@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentalDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Passport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsLegalEntity" Type="Boolean" Nullable="false" />
+    <Property Name="ContactPerson" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="RentalContract" Relationship="Self.FK__RentalCon__Clien__403A8C7D" FromRole="Client" ToRole="RentalContract" />
+  </EntityType>
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RentalContract">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContractNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContractDate" Type="DateTime" Precision="0" />
+    <Property Name="ClientId" Type="Int32" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Precision="0" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="DailyPrice" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__RentalCon__Clien__403A8C7D" FromRole="RentalContract" ToRole="Client" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK__RentalCon__Vehic__412EB0B6" FromRole="RentalContract" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumberPlate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReleaseDate" Type="DateTime" Precision="0" />
+    <Property Name="TypeId" Type="Int32" />
+    <NavigationProperty Name="RentalContract" Relationship="Self.FK__RentalCon__Vehic__412EB0B6" FromRole="Vehicle" ToRole="RentalContract" />
+    <NavigationProperty Name="VehicleType" Relationship="Self.FK__Vehicle__TypeId__3B75D760" FromRole="Vehicle" ToRole="VehicleType" />
+    <NavigationProperty Name="Breakdown" Relationship="CarRentalDBModel.FK__Breakdown__Vehic__4E88ABD4" FromRole="Vehicle" ToRole="Breakdown" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Vehicle__TypeId__3B75D760" FromRole="VehicleType" ToRole="Vehicle" />
+  </EntityType>
+  <Association Name="FK__RentalCon__Clien__403A8C7D">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="RentalContract" Type="Self.RentalContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalContract">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RentalCon__Vehic__412EB0B6">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="RentalContract" Type="Self.RentalContract" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalContract">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vehicle__TypeId__3B75D760">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="0..1" />
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarRentalDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="Firm" EntityType="Self.Firm" />
+    <EntitySet Name="RentalContract" EntityType="Self.RentalContract" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" />
+    <EntitySet Name="VehicleType" EntityType="Self.VehicleType" />
+    <AssociationSet Name="FK__RentalCon__Clien__403A8C7D" Association="Self.FK__RentalCon__Clien__403A8C7D">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="RentalContract" EntitySet="RentalContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RentalCon__Vehic__412EB0B6" Association="Self.FK__RentalCon__Vehic__412EB0B6">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="RentalContract" EntitySet="RentalContract" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vehicle__TypeId__3B75D760" Association="Self.FK__Vehicle__TypeId__3B75D760">
+      <End Role="VehicleType" EntitySet="VehicleType" />
+      <End Role="Vehicle" EntitySet="Vehicle" />
+    </AssociationSet>
+    <EntitySet Name="Breakdown" EntityType="CarRentalDBModel.Breakdown" />
+    <AssociationSet Name="FK__Breakdown__Vehic__4E88ABD4" Association="CarRentalDBModel.FK__Breakdown__Vehic__4E88ABD4">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="Breakdown" EntitySet="Breakdown" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Breakdown">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="FailureReason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ReturnMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Vehicle" Relationship="CarRentalDBModel.FK__Breakdown__Vehic__4E88ABD4" FromRole="Breakdown" ToRole="Vehicle" />
+  </EntityType>
+  <Association Name="FK__Breakdown__Vehic__4E88ABD4">
+    <End Type="CarRentalDBModel.Vehicle" Role="Vehicle" Multiplicity="0..1" />
+    <End Type="CarRentalDBModel.Breakdown" Role="Breakdown" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Breakdown">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

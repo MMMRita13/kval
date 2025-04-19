@@ -1,0 +1,27 @@
+﻿<Window x:Class="Diagnostick.ManageEquipmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Diagnostick"
+        mc:Ignorable="d"
+        Title="Управление оборудованием" Height="400" Width="650">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="5">
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5" Width="100"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5" Width="100"/>
+            <Button Content="Сохранить" Click="SaveButton_Click" Margin="5" Width="100"/>
+        </StackPanel>
+        <DataGrid x:Name="EquipmentGrid" AutoGenerateColumns="False" Margin="5" IsReadOnly="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер" Binding="{Binding Number}" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Дата начала эксплуатации" Binding="{Binding StartDate, StringFormat=d}" />
+                <DataGridTextColumn Header="Дата окончания эксплуатации" Binding="{Binding EndDate, StringFormat=d}" />
+                <DataGridTextColumn Header="ID участка" Binding="{Binding SiteId}" />
+                <!-- Или если хочешь показать название участка (если есть навигационное свойство Site.Name): -->
+                <!-- <DataGridTextColumn Header="Участок" Binding="{Binding Sites.Name}" IsReadOnly="True" /> -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

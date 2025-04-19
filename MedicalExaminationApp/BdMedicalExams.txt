@@ -1,0 +1,74 @@
+Create database MedicalExamination
+use MedicalExamination
+CREATE TABLE Company (
+    Id INT PRIMARY KEY IDENTITY,
+    Name NVARCHAR(100) NOT NULL,
+    ShortName NVARCHAR(50),
+    LegalAddress NVARCHAR(200)
+);
+
+CREATE TABLE ExamResults (
+    Id INT PRIMARY KEY IDENTITY,
+    Code NVARCHAR(10) NOT NULL,
+    Name NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Employees (
+    Id INT PRIMARY KEY IDENTITY,
+    LastName NVARCHAR(50) NOT NULL,
+    FirstName NVARCHAR(50) NOT NULL,
+    MiddleName NVARCHAR(50),
+    BirthDate DATE NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE,
+    Rate DECIMAL(5,2) NOT NULL,
+    Position NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE MedicalExams (
+    Id INT PRIMARY KEY IDENTITY,
+    EmployeeId INT NOT NULL FOREIGN KEY REFERENCES Employees(Id),
+    ExamDate DATE NOT NULL,
+    ResultId INT NOT NULL FOREIGN KEY REFERENCES ExamResults(Id),
+    DoctorName NVARCHAR(100) NOT NULL,
+    DoctorPosition NVARCHAR(100) NOT NULL,
+    IsPassed BIT NOT NULL
+);
+
+CREATE TABLE Notifications (
+    Id INT PRIMARY KEY IDENTITY,
+    EmployeeId INT NOT NULL FOREIGN KEY REFERENCES Employees(Id),
+    NotificationDate DATE NOT NULL,
+    ClinicAddress NVARCHAR(200) NOT NULL,
+    ClinicPhone NVARCHAR(20) NOT NULL,
+    SpecialistName NVARCHAR(100) NOT NULL,
+    SpecialistPosition NVARCHAR(100) NOT NULL
+);
+
+INSERT INTO Company (Name, ShortName, LegalAddress)
+VALUES ('ООО "МедПредприятие"', 'МедП', 'г. Москва, ул. Зеленая, д. 15');
+
+INSERT INTO ExamResults (Code, Name)
+VALUES ('G', 'Годен'), ('NG', 'Не годен'), ('D', 'Другое');
+
+INSERT INTO Employees (LastName, FirstName, MiddleName, BirthDate, StartDate, Rate, Position)
+VALUES 
+('Иванов', 'Митя', 'Иванович', '1980-05-10', '2020-01-01', 1.0, 'Хирург'),
+('Петрова', 'Потам', 'Сергеевна', '1990-07-20', '2021-03-15', 0.75, 'Мед-брат');
+
+
+INSERT INTO MedicalExams (EmployeeId, ExamDate, ResultId, DoctorName, DoctorPosition, IsPassed)
+VALUES 
+(1, '2023-05-15', 1, 'Сидоров А.А.', 'Терапевт', 1),
+(2, '2023-06-20', 2, 'Козлова И.И.', 'Хирург', 0),
+(3, '2023-05-15', 1, 'Сидоров А.А.', 'Терапевт', 1),
+(4, '2023-06-20', 2, 'Козлова И.И.', 'Хирург', 0),
+(5, '2023-05-15', 1, 'Сидоров А.А.', 'Терапевт', 1),
+(6, '2023-06-20', 2, 'Козлова И.И.', 'Хирург', 0);
+
+INSERT INTO Notifications (EmployeeId, NotificationDate, ClinicAddress, ClinicPhone, SpecialistName, SpecialistPosition)
+VALUES 
+(1, '2023-05-10', 'г. Москва, ул. Лечебная, 5', '+79991234567', 'Васильева О.П.', 'Регистратор'),
+(2, '2023-06-15', 'г. Москва, ул. Лечебная, 5', '+79991234567', 'Васильева О.П.', 'Регистратор');
+
+Select * from MedicalExams

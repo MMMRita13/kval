@@ -1,0 +1,25 @@
+﻿<Window x:Class="CarRental.ReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarRental"
+        mc:Ignorable="d"
+        Title="ReportsWindow" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Content="ТС в прокате на дату" Margin="5" Click="VehiclesByTypeOnDate_Click"/>
+            <!--<Button Content="Клиенты - юр.лица" Margin="5" Click="LegalClients_Click"/>
+            <Button Content="Причины поломок" Margin="5" Click="Breakdowns_Click"/>
+            <Button Content="Сотрудники и договора" Margin="5" Click="EmployeesContracts_Click"/>-->
+            <Button Content="Отчет для руководителя" Width="200" Click="DirectorReports_Click" Height="21"/>
+        </StackPanel>
+
+        <DataGrid x:Name="ReportGrid" Grid.Row="1" AutoGenerateColumns="True" />
+    </Grid>
+</Window>
